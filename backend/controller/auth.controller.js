@@ -1,4 +1,4 @@
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { companyDetail } from "../models/companyDetails.model.js";
 import { Otp } from "../models/otp.model.js";
 import { generateOTP } from "../utils/generateOTP.js";

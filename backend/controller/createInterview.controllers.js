@@ -1,4 +1,4 @@
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import {interview} from "../models/interview.model.js";
 import { companyDetail } from "../models/companyDetails.model.js";
 import { generateJobDescription } from "../utils/gooleGenerative.js";
