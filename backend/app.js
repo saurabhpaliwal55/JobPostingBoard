@@ -13,10 +13,10 @@ import userRouter from "./routes/register.route.js";
 app.use("/api/user", userRouter);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"))
+  res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"))
 );
 
 export { app };
