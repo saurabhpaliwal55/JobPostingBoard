@@ -11,7 +11,7 @@ const CreateInreviw = () => {
     endDate: "",
   });
   const [candidateInput, setCandiateInput] = useState("");
-  const [interviewId,setInterviewId] = useState("");
+  const [interviewId, setInterviewId] = useState("");
   const [disable, setDisable] = useState(true);
 
   const navigate = useNavigate();
@@ -68,10 +68,9 @@ const CreateInreviw = () => {
     });
   };
   const handleSubmit = async () => {
-    // console.log("Frontend details",details);
     try {
       const response = await axios.post("/api/user/createInterview", details);
-      const iId = response.data.createdInterview._id
+      const iId = response.data.createdInterview._id;
       setInterviewId(iId);
       if (response.status == 200) {
         toast.success("Interview created successfully", toastSuccessOptions);
@@ -92,9 +91,9 @@ const CreateInreviw = () => {
   const handleSend = async () => {
     try {
       console.log(interviewId);
-      const response = await axios.post("/api/user/sendMail", {interviewId});
+      const response = await axios.post("/api/user/sendMail", { interviewId });
       if (response.status == 200) {
-        toast.success("Emails sent to candiates",toastSuccessOptions);
+        toast.success("Emails sent to candiates", toastSuccessOptions);
         navigate("/app/showInterviews");
       }
     } catch (error) {
@@ -103,45 +102,40 @@ const CreateInreviw = () => {
   };
   return (
     <>
-      <div className="flex flex-row h-full">
-        <div className="flex">
-          <div className="w-16 bg-gray-100 h-full flex justify-center sidebar"></div>
-        </div>
-
-        <div className="flex h-auto w-[900px] flex-col pt-[70px] items-center ">
-          <div className="flex w-full items-center justify-between mb-[20px]">
-            <label className="flex text-gray-700 mb-1 w-[30%] mr-[40px] justify-end font-medium text-[#292929B2] text-[22px]">
+      <div className="flex flex-col md:flex-row h-screen w-full">
+        <div className="w-16 bg-gray-100 h-full md:flex hidden justify-center sidebar "></div>
+        <div className="flex flex-col w-full md:w-[900px] p-6 md:pt-[70px] mx-auto">
+          <div className="flex flex-col md:flex-row items-center mb-4">
+            <label className="w-full md:w-[30%] text-gray-700 font-medium text-[20px] text-center md:text-right pr-4">
               Job Title
             </label>
             <input
               type="text"
               name="jobTitle"
               placeholder="Enter Job Title"
-              className="w-[70%] border rounded-md p-2 mr-[20px]"
+              className="w-full md:w-[70%] border rounded-md p-2"
               onChange={handleChange}
             />
           </div>
-
-          <div className="flex w-full justify-between  mb-[20px]">
-            <label className="flex w-[30%] justify-end text-gray-700 mb-1 mt-[10px] mr-[40px] font-medium text-[#292929B2] text-[22px]">
+          <div className="flex flex-col md:flex-row items-center mb-4">
+            <label className="w-full md:w-[30%] text-gray-700 font-medium text-[20px] text-center md:text-right pr-4">
               Job Description
             </label>
             <textarea
               name="jobDescription"
-              placeholder="Enter Job Description {you can pass only parameters ai will do the rest}"
-              className="w-[70%] h-[200px] border rounded-md p-2 mr-[20px]"
+              placeholder="Enter Job Description"
+              className="w-full md:w-[70%] h-[150px] border rounded-md p-2"
               onChange={handleChange}
             ></textarea>
           </div>
-
-          <div className="flex w-full justify-between items-center mb-[20px]">
-            <label className="flex w-[30%] justify-end text-gray-700 mb-1  mr-[40px] font-medium text-[#292929B2] text-[22px]">
+          <div className="flex flex-col md:flex-row items-center mb-4">
+            <label className="w-full md:w-[30%] text-gray-700 font-medium text-[20px] text-center md:text-right pr-4">
               Experience Level
             </label>
             <select
               name="experienceLevel"
               onChange={handleChange}
-              className="w-[70%] border rounded-md p-2 mr-[20px]"
+              className="w-full md:w-[70%] border rounded-md p-2"
             >
               <option value="">Select Experience Level</option>
               <option value="Junior">Junior</option>
@@ -149,34 +143,34 @@ const CreateInreviw = () => {
               <option value="Senior">Senior</option>
             </select>
           </div>
-
-          <div className="flex w-full justify-between items-center mb-[20px]">
-            <label className="flex w-[30%] justify-end text-gray-700 mb-1  mr-[40px] font-medium text-[#292929B2] text-[22px]">
+          <div className="flex flex-col md:flex-row items-center mb-4">
+            <label className="w-full md:w-[30%] text-gray-700 font-medium text-[20px] text-center md:text-right pr-4">
               Add Candidate
             </label>
-            <input
-              type="email"
-              name="candidatesList"
-              value={candidateInput}
-              placeholder="xyz@gmail.com"
-              onChange={handleCandidateInput}
-              onKeyPress={(e) => e.key === "Enter" && addCandidate()}
-              className="w-[63%] border rounded-md p-2 mr-[10px]"
-            />
-            <button
-              type="button"
-              onClick={addCandidate}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
-            >
-              Add
-            </button>
+            <div className="flex w-full md:w-[70%]">
+              <input
+                type="email"
+                name="candidatesList"
+                value={candidateInput}
+                placeholder="xyz@gmail.com"
+                onChange={handleCandidateInput}
+                onKeyPress={(e) => e.key === "Enter" && addCandidate()}
+                className="w-[80%] border rounded-md p-2"
+              />
+              <button
+                type="button"
+                onClick={addCandidate}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+              >
+                Add
+              </button>
+            </div>
           </div>
-
-          <div className="flex flex-col w-full items-end mb-[20px]">
+          <div className="flex flex-col w-full md:w-[70%] ml-auto mb-4">
             {details.candidatesList.map((email, index) => (
               <div
                 key={index}
-                className="flex w-[70%] border rounded-md p-2 items-center justify-between mb-2"
+                className="flex justify-between border rounded-md p-2 items-center mb-2"
               >
                 <span>{email}</span>
                 <button
@@ -189,19 +183,17 @@ const CreateInreviw = () => {
               </div>
             ))}
           </div>
-
-          <div className="flex w-full justify-between items-center mb-[20px]">
-            <label className="flex w-[30%] justify-end text-gray-700 mb-1  mr-[40px] font-medium text-[#292929B2] text-[22px]">
+          <div className="flex flex-col md:flex-row items-center mb-4">
+            <label className="w-full md:w-[30%] text-gray-700 font-medium text-[20px] text-center md:text-right pr-4">
               End Date
             </label>
             <input
               type="date"
               name="endDate"
               onChange={handleChange}
-              className="w-[70%] border rounded-md p-2 mr-[20px]"
+              className="w-full md:w-[70%] border rounded-md p-2"
             />
           </div>
-
           <div className="flex justify-end gap-2">
             {disable ? (
               <button
@@ -209,7 +201,7 @@ const CreateInreviw = () => {
                 className="bg-blue-500 text-white px-6 py-2 rounded-md"
                 onClick={handleSubmit}
               >
-                CreateInterview
+                Create Interview
               </button>
             ) : (
               <button
