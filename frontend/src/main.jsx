@@ -10,7 +10,7 @@ createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <UserProvider>
       <App />
-      <ToastContainer />
+      <ToastContainer/>
     </UserProvider>
   </BrowserRouter>
 );
