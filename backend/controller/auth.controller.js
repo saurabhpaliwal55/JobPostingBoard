@@ -10,7 +10,7 @@ const genrateAccessToken = async (userId) => {
     const accessToken = await user.generateAccessToken();
     return accessToken;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -19,7 +19,6 @@ const register = asyncHandler(async (req, res) => {
   //generate token and store in cokkies
   //build session based authentication
   const { name, phone, companyName, companyEmail, employeeSize } = req.body;
-  console.log(name, phone, companyName, companyEmail, employeeSize);
   // checking all fields are not empty
   if (!name || !phone || !companyName || !companyEmail || !employeeSize) {
     return res.status(400).json({
@@ -110,8 +109,6 @@ const verifyEmailOtp = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
   const user = await companyDetail.findOne({ companyEmail: email });
-  //   console.log(user);
-  //   console.log(user._id);
   if (!email) {
     return res.status(403).json({ message: "Email is required" });
   }
@@ -119,7 +116,6 @@ const verifyEmailOtp = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Email otp are required." });
   }
   const emailOtpEntry = await Otp.findOne({ emailOtp,email });
-  console.log(emailOtpEntry);
   
   if (!emailOtpEntry) {
     return res.status(401).json({ message: "Invalid OTP." });

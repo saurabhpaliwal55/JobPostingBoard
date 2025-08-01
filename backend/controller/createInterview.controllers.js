@@ -42,7 +42,6 @@ const showInterviews = asyncHandler(async(req,res)=>{
 const sendMail = asyncHandler(async(req,res)=>{
     const cid = req.user._id;
     const {interviewId} = req.body;
-    console.log(interviewId);
     
     const interviewDetails = await interview.findById(interviewId)
     
@@ -62,7 +61,7 @@ const sendMail = asyncHandler(async(req,res)=>{
         await sendEmails(candidates,jobDes);
         return res.status(200).json({message:"Emails sent"})
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 
 })
