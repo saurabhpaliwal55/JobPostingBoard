@@ -123,7 +123,7 @@ const CreateInreviw = () => {
             </label>
             <textarea
               name="jobDescription"
-              placeholder="Enter Job Description"
+              placeholder="Add key points like role, skills, experience — AI will write the full JD."
               className="w-full md:w-[70%] h-[150px] border rounded-md p-2"
               onChange={handleChange}
             ></textarea>

@@ -15,7 +15,7 @@ const createInterview = asyncHandler(async(req,res)=>{
         return res.status(402).json({message:"candidate list is required"})
     }
 
-
+    
     try {
         const createdInterview = await interview.create({
             companyId:cid,
